@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
+
+const API_BASE = "https://sports-ai-backend-9n38.onrender.com";
+
 import {
   LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, BarChart, Bar,
@@ -605,8 +608,9 @@ function PlayerDashboard({ tick, onLogout, name }) {
   const { data: t, history, source } = useLiveTelemetry(me.seed, me.fitnessBase, tick);
   const messages = useMemo(() => (t ? aiMessagesFor(t) : []), [t]);
   
+  
   useEffect(() => {
-  fetch("http://127.0.0.1:5000/api/sessions")
+    fetch("https://sports-ai-backend-9n38.onrender.com/api/sessions")
     .then((response) => response.json())
     .then((data) => {
       setSessions(data);
@@ -616,7 +620,7 @@ function PlayerDashboard({ tick, onLogout, name }) {
     });
 }, []);
 useEffect(() => {
-  fetch("http://127.0.0.1:5000/api/sessions")
+   fetch("https://sports-ai-backend-9n38.onrender.com/api/sessions")
     .then((response) => response.json())
     .then((data) => {
       setSessions(data);
@@ -627,15 +631,31 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  fetch("http://127.0.0.1:5000/api/coach")
-    .then((response) => response.json())
-    .then((data) => {
-      setCoachAdvice(data.advice);
-    })
-    .catch((error) => {
+  async function loadCoach() {
+    try {
+      const response = await fetch(`${API_BASE}/api/coach`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      console.log("Coach API:", data);
+
+      setCoachAdvice(data.advice || "No advice available.");
+    } catch (error) {
       console.error("Error loading AI Coach:", error);
-    });
+
+      setCoachAdvice(
+        "Unable to connect to AI Coach.\nPlease try again in a few seconds."
+      );
+    }
+  }
+
+  loadCoach();
 }, []);
+
   if (!t) {
     return (
       <div className="min-h-screen flex items-center justify-center f-body" style={{ background: C.void, color: C.muted }}>
