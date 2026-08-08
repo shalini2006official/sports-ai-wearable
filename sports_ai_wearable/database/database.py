@@ -1,3 +1,4 @@
+from flask import app
 from flask_sqlalchemy import SQLAlchemy
 
 # Create SQLAlchemy object
@@ -10,7 +11,12 @@ def init_db(app):
     """
 
     # SQLite database file
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:Shalini%4023@localhost:5432/sports_ai"
+    import os
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
+        "DATABASE_URL",
+        "postgresql://postgres:Shalini%4023@localhost:5432/sports_ai"
+    )
 
     # Disable modification tracking (improves performance)
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
