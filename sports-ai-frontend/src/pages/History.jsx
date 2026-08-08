@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import HistoryCard from "../components/HistoryCard";
 
-const API = "http://localhost:5000/api/sessions";
+const API = "https://sports-ai-backend-9n38.onrender.com/api/sessions";
 
 function History() {
   const [sessions, setSessions] = useState([]);

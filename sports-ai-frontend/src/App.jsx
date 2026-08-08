@@ -103,7 +103,7 @@ function telemetryAt(seed, t, fitnessBase) {
    Points at the Flask API in server.py. Only reachable when this file is run as a real
    app (e.g. `npm run dev`) on the same machine as the backend — the Claude.ai artifact
    preview cannot reach localhost, so it will always fall back to simulated data here. */
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://sports-ai-backend-9n38.onrender.com";
 const LIVE_POLL_MS = 2000;
 
 function useLiveTelemetry(seed, fitnessBase, tick) {
