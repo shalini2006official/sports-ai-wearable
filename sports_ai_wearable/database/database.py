@@ -13,10 +13,11 @@ def init_db(app):
     # SQLite database file
     import os
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-        "DATABASE_URL",
-        "postgresql://postgres:Shalini%4023@localhost:5432/sports_ai"
-    )
+    # app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
+    #     "DATABASE_URL",
+    #     "postgresql://postgres:Shalini%4023@localhost:5432/sports_ai"
+    # )
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sports_ai.db"
 
     # Disable modification tracking (improves performance)
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
