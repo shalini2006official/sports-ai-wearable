@@ -32,7 +32,7 @@ export default function VideoAnalysis() {
         console.log("3. Sending request...");
 
         const response = await fetch(
-            "http://127.0.0.1:5000/api/video",
+            "https://sports-ai-backend-9n38.onrender.com/api/video",
             {
                 method: "POST",
                 body: formData,
@@ -183,7 +183,7 @@ export default function VideoAnalysis() {
 {message && (
   <button
     onClick={() =>
-      window.open("http://127.0.0.1:5000/api/report", "_blank")
+      window.open("https://sports-ai-backend-9n38.onrender.com/api/report", "_blank")
     }
     style={{
       marginTop: "20px",
