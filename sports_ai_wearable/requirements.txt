@@ -6,3 +6,4 @@ numpy
 matplotlib
 flask
 flask-cors
+pyserial==3.5
