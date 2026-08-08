@@ -1,5 +1,8 @@
 Flask
 flask-cors
+Flask-SQLAlchemy
+SQLAlchemy
+psycopg2-binary
 google-generativeai
 opencv-python-headless
 mediapipe
