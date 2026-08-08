@@ -9,3 +9,5 @@ matplotlib
 Pillow
 pyserial==3.5
 requests
+joblib
+scikit-learn
